@@ -12,8 +12,6 @@ import Watermark from '@/components/Watermark';
 import Control from '@/components/Control';
 import HotKey from '@/components/HotKey';
 
-import Market from '@/sections/Market';
-
 import { getBase64 } from '@/untils';
 
 import ImgCrop from 'antd-img-crop';
@@ -122,13 +120,11 @@ function reducer(state, action) {
         ...state,
         options: action.payload,
       };
-      break;
     case 'SET_CURRENT':
       return {
         ...state,
         current: action.payload,
       };
-      break;
     default:
       throw new Error();
   }
@@ -272,38 +268,17 @@ export default function IndexPage() {
       {/* Header */}
       <header className="fixed z-40 top-4 left-4 flex justify-start items-center content-center">
         <div className="pr-4 text-gray-800">
-          <div className="text-2xl font-bold font-sans z-50">WaterMark Pro</div>
+          <div className="text-2xl font-bold font-sans z-50">图片加水印</div>
         </div>
-        <a href="https://github.com/Turkyden/watermark-pro" target="_blank">
+
+        {/* <a href="https://github.com/idxiu/watermark-pro" target="_blank">
           <img
             className="w-24"
             alt="GitHub Repo stars"
-            src="https://img.shields.io/github/stars/Turkyden/watermark-pro?style=social"
+            src="https://img.shields.io/github/stars/idxiu/watermark-pro?style=social"
           />
-        </a>
+        </a> */}
       </header>
-
-      {/* Buy me a coofee */}
-      <div className="fixed top-20 left-4 z-40 cursor-pointer animate-bounce">
-        <Popover
-          content={
-            <div className="p-2">
-              <img
-                className="w-64 rounded"
-                src={require('../assets/weixin.jpeg')}
-                alt="buymeacoffee"
-              />
-            </div>
-          }
-          title=""
-        >
-          <img
-            className="w-36 shadow-2xl transition"
-            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-            alt="Buy Me A Coffee"
-          />
-        </Popover>
-      </div>
 
       {/* Canvas */}
       <section
@@ -322,7 +297,7 @@ export default function IndexPage() {
             <Watermark url={previewImage} options={options} />
           </div>
         </div>
-        <Control title="💦 WaterMark Pro" defaultPosition={{ x: -16, y: 16 }}>
+        <Control title="水印配置" defaultPosition={{ x: -16, y: 16 }}>
           <FormRender
             form={form}
             schema={schema}
@@ -372,21 +347,7 @@ export default function IndexPage() {
           )}
         </Upload>
         {/* </ImgCrop> */}
-        <div className="animate-bounce w-full absolute bottom-2 left-0 text-center text-gray-300">
-          <ArrowDownOutlined
-            className="text-2xl"
-            onClick={() =>
-              window.scrollTo({
-                top: window.outerHeight,
-                behavior: 'smooth',
-              })
-            }
-          />
-        </div>
       </section>
-
-      {/* Market Pages */}
-      <Market />
     </div>
   );
 }
